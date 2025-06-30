@@ -405,21 +405,18 @@ void HT16K33_GFX::process(Driver *drv) {
 			break;
 
 		case s_scrolling:
-			if(flip_display){
-				for(int x=0; x<8; x++)
-					for(int y=0; y<16; y++)
-						if(scrolling_buffer[bufPtr+7-x] & (1<<y))
-							buffer[ht16k33_ptr_conv_sprite[y]] |= 0x0080 >> x;	// set bit
+			for(int x=0; x<8; x++)
+				for(int y=0; y<16; y++)
+					if(flip_display)		// if USB & I2C connector should be on the bottom
+						if(scrolling_buffer[bufPtr+7-x] & (1<<y))				// test bit in memory map
+							buffer[ht16k33_ptr_conv_sprite[y]] |= 0x0080 >> x;	// set bit in display
 						else
-							buffer[ht16k33_ptr_conv_sprite[y]] &= 0xff7f >> x;	// clr bit
-			}else{
-				for(int x=0; x<8; x++)
-					for(int y=0; y<16; y++)
-						if(scrolling_buffer[bufPtr+x] & (1<<(15-y)))
-							buffer[ht16k33_ptr_conv_sprite[y]] |= 0x0080 >> x;	// set bit
+							buffer[ht16k33_ptr_conv_sprite[y]] &= 0xff7f >> x;	// clr bit in display
+					else					// else USB & I2C connector are on top (default)
+						if(scrolling_buffer[bufPtr+x] & (1<<(15-y)))			// test bit in memory map
+							buffer[ht16k33_ptr_conv_sprite[y]] |= 0x0080 >> x;	// set bit in display
 						else
-							buffer[ht16k33_ptr_conv_sprite[y]] &= 0xff7f >> x;	// clr bit
-			}
+							buffer[ht16k33_ptr_conv_sprite[y]] &= 0xff7f >> x;	// clr bit in display
 			bufPtr++;
 			if(bufPtr >= bufLen)	bufPtr = 0;
 			// set show and then scrolling flag
