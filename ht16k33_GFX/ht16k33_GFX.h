@@ -39,7 +39,7 @@ class HT16K33_GFX : public Device {
 		int idle(void);
 		void wait_idle(void);
 		void show(uint8_t *buf);
-		void clear(int flip);
+		void clear();
 		void dot(double x, double y, int type);
 		void dot_stack(double x, double y, int type);
 		void move(int move, int type);
@@ -47,6 +47,6 @@ class HT16K33_GFX : public Device {
 		void scroll(int val, bool scroll_flag);
 		void scroll(double val, bool scroll_flag);
 		void scroll(double val, bool scroll_flag, int precision);
-		void print(char * msg);
+		void print(int flip, char * msg);
 		void bufferChar(uint8_t c);
 };

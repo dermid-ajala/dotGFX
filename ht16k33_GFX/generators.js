@@ -1,11 +1,11 @@
-Blockly.JavaScript['basic_led16x8_gfx_clr'] = function(block) {
-	var flp = parseInt(block.getFieldValue('flip'));
-	return 'DEV_I2C0.HT16K33_GFX(0, 0x70).clear(' + flp +');\n'
+Blockly.JavaScript['basic_led16x8.gfx_clr'] = function(block) {
+	return 'DEV_I2C0.HT16K33_GFX(0, 0x70).clear();\n'
 };
 
 Blockly.JavaScript['led16x8.gfx_print'] = function(block) {
+	var flip = parseInt(block.getFieldValue('flp'));
 	var argument0 = Blockly.JavaScript.valueToCode(block, 'Str', Blockly.JavaScript.ORDER_ASSIGNMENT) || '""';
-	return 'DEV_I2C0.HT16K33_GFX(0, 0x70).print(' + argument0 + ');\n';
+	return 'DEV_I2C0.HT16K33_GFX(0, 0x70).print(' + flip + ',' + argument0 + ');\n';
 };
 
 Blockly.JavaScript['led16x8.gfx_dot'] = function(block) {

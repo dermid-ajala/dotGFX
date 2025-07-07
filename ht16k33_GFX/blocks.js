@@ -1,13 +1,7 @@
-Blockly.Blocks["basic_led16x8_gfx_clr"] = {
+Blockly.Blocks["basic_led16x8.gfx_clr"] = {
 	init: function() {
 		this.appendDummyInput()
 			.appendField(Blockly.Msg.BASIC_LED16X8_CLR_GFX_TITLE);
-		this.appendDummyInput()
-			.appendField("")
-			.appendField(new Blockly.FieldDropdown([
-				[Blockly.Msg.GFX_USB_UP, "0"],
-				[Blockly.Msg.GFX_USB_DOWN, "1"]
-			]), 'flip');
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);
 		this.setNextStatement(true);
@@ -20,6 +14,12 @@ Blockly.Blocks["basic_led16x8_gfx_clr"] = {
 Blockly.Blocks["led16x8.gfx_print"] = {
 	init: function() {
 		this.appendDummyInput().appendField("print GFX");
+		this.appendDummyInput()
+			.appendField("Flip")
+			.appendField(new Blockly.FieldDropdown([
+				[Blockly.Msg.GFX_USB_UP, "0"],
+				[Blockly.Msg.GFX_USB_DOWN, "1"]
+			]), 'flp');
 		this.appendValueInput('Str').setCheck('String').appendField("Str");
 		this.setInputsInline(true);
 		this.setPreviousStatement(true);

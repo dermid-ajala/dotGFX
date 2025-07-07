@@ -572,8 +572,7 @@ void HT16K33_GFX::show(uint8_t *buf) {
 	FLAG_SET(flag, HT16K33_BUSY_FLAG);
 }
 
-void HT16K33_GFX::clear(int flip) {
-	flip_display = flip;
+void HT16K33_GFX::clear() {
 	for (int i = 0; i < 16; i++)
 		sprite_buffer[i] = 0;
 	show(sprite_buffer);
@@ -750,7 +749,8 @@ void HT16K33_GFX::scroll(double val, bool scroll_flag, int precision) {
 	scroll(buf, scroll_flag);
 }
 
-void HT16K33_GFX::print(char *message) {
+void HT16K33_GFX::print(int flip, char *message) {
+	flip_display = flip;
 	memset(scrolling_buffer, 0, sizeof(scrolling_buffer));	// clear the output buffer
 	bufPtr = 0; // this is the pointer to where the data to display starts
 	bufLen = 8;	// this is the pointer to where we start filling the buffer. Start with 8 empty columns.
