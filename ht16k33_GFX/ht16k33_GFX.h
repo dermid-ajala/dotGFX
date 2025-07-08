@@ -5,8 +5,9 @@
 #include "i2c-dev.h"
 #include "gfxfont.h"
 
-#define SCROLLING_STRING_BUFFER_LEN		512
-#define SCROLLING_STRING_LEN			31
+
+#define SCROLLING_STRING_LEN			500
+#define SCROLLING_STRING_BUFFER_LEN		(SCROLLING_STRING_LEN * 6)
 #define LED16x8_MAX_CHARS				2
 #define LED16x8_MAX_STACK				4
 
